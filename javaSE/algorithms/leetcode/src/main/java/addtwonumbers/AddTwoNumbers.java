@@ -1,6 +1,6 @@
 package addtwonumbers;
 
-class Solution {
+class AddTwoNumbers {
 
     class ListNode {
         int val;

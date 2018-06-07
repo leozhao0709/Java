@@ -2,7 +2,7 @@ package longestPalindromicSubstring;
 
 import java.util.Arrays;
 
-class Solution {
+class LongestPalindromicSubstring {
     public String longestPalindrome(String s) {
         if (s.length() <= 1) {
             return s;

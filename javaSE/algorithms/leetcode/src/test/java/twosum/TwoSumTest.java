@@ -5,13 +5,13 @@ import org.junit.Test;
 import java.util.Arrays;
 
 
-public class SolutionTest {
+public class TwoSumTest {
 
     @Test
     public void twoSum() {
-        Solution solution = new Solution();
+        TwoSum twoSum = new TwoSum();
 
-        int[] res = solution.twoSum(new int[]{2, 7, 11, 15}, 9);
+        int[] res = twoSum.twoSum(new int[]{2, 7, 11, 15}, 9);
         System.out.println(Arrays.toString(res));
     }
 }

@@ -3,7 +3,7 @@ package longestSubstringWithoutRepeatingChar;
 import java.util.HashMap;
 import java.util.Map;
 
-class Solution {
+class LongestSubstringWithoutRepreat {
 
     public int lengthOfLongestSubstring(String s) {
         if (s.length() < 2) {
