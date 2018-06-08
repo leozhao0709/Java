@@ -58,13 +58,23 @@ System.out.println("Time after 2 hours : " + newTime);
 
 // check how many days between 2 days
 LocalDate java8Release = LocalDate.of(2014, Month.MARCH, 14);
-Period periodToNextJavaRelease = Period.between(today, java8Release);
+Period periodToNextJavaRelease = Period.between(today, java8Release); // Note: period.getYear , period.getMonth, period.getDay is the year/month/day between two days
 System.out.println("Months left between today and Java 8 release : " + periodToNextJavaRelease.getMonths() );
 
 // check duration of localDateTime
 LocalDateTime ldt1 = LocalDateTime.of(2017, 07, 06, 23, 30, 00);
 LocalDateTime ldt2 = LocalDateTime.of(2017, 07, 07, 1, 30, 00);
 System.out.println(Duration.between(ldt1, ldt2).toHours());
+System.out.println(Duration.between(ldt1, ldt2).toDays());
+
+LocalDate today = LocalDate.now();
+LocalDate myBirthday = LocalDate.of(1991, 7, 9);
+
+// count between dates
+long years = ChronoUnit.YEARS.between(myBirthday, today); // 26 years
+long months = ChronoUnit.MONTHS.between(myBirthday, today); // 322 months
+long weeks = ChronoUnit.WEEKS.between(myBirthday, today); // 1404 weeks
+long days = ChronoUnit.DAYS.between(myBirthday, today); // 9830 days
 ```
 
 ## 3. formatter
