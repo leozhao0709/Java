@@ -1,6 +1,4 @@
-package longestPalindromicSubstring;
-
-import java.util.Arrays;
+package _001_040.longestPalindromicSubstring;
 
 class LongestPalindromicSubstring {
     public String longestPalindrome(String s) {

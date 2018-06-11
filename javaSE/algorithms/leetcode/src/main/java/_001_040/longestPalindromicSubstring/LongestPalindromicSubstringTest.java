@@ -1,4 +1,4 @@
-package longestPalindromicSubstring;
+package _001_040.longestPalindromicSubstring;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package stringToInteger;
+package _001_040.stringToInteger;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

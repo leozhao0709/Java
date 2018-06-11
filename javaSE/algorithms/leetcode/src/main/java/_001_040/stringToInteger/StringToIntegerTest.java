@@ -1,4 +1,4 @@
-package stringToInteger;
+package _001_040.stringToInteger;
 
 import org.junit.Before;
 import org.junit.Test;

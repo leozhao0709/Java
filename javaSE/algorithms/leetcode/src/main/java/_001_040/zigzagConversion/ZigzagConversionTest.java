@@ -1,4 +1,4 @@
-package zigzagConversion;
+package _001_040.zigzagConversion;
 
 import org.junit.Before;
 import org.junit.Test;

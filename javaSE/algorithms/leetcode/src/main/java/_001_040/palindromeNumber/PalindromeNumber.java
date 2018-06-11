@@ -1,4 +1,4 @@
-package palindromeNumber;
+package _001_040.palindromeNumber;
 
 class PalindromeNumber {
 

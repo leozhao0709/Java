@@ -1,4 +1,4 @@
-package twosum;
+package _001_040.twosum;
 
 import org.junit.Test;
 
