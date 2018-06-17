@@ -21,6 +21,7 @@ public class Main extends Application {
         primaryStage.setTitle("Hello World");
 
         Button button = new Button("Click me");
+        button.setOnAction(e -> System.out.println("clicked!!!!"));
 
         StackPane pane = new StackPane();
         pane.getChildren().add(button);
