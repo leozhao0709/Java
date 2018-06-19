@@ -57,3 +57,51 @@ public static void main(String[] args) throws ExecutionException, InterruptedExc
     System.out.println(future.get()); // Future will block future thread
 }
 ```
+
+## 4. synchronized
+
+Using `synchronized(anyObject(lock))` to add a synchronized code block.
+
+**Please make sure that same resource should has the same lock.**
+
+```java
+public void sellTickets() {
+    new Thread(() -> {
+        synchronized (this) {
+            while (this.tickets > 0) {
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println(Thread.currentThread().getName() + ": sell ticket " + this.tickets--);
+            }
+            System.out.println(Thread.currentThread().getName() + ": sold out!!!");
+        }
+    }).start();
+}
+```
+
+We can also using synchronized method to run a synchronized code block
+
+```java
+public void sellTickets() {
+    new Thread(this::run).start();
+}
+
+private synchronized void run() {
+    while (this.tickets > 0) {
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(Thread.currentThread().getName() + ": sell ticket " + this.tickets--);
+    }
+    System.out.println(Thread.currentThread().getName() + ": sold out!!!");
+}
+```
+
+## 5. 线程间通信
+
+Using `wait`, `notify` and `notifyAll` to do the communication between different thread.
