@@ -37,11 +37,12 @@ class MergeSort implements SortFunction {
             } else if (j > r) {
                 arr[k] = arrTemp[i - l];
                 i++;
-            } else if (arr[i] < arr[j]) {
+            } else if (arrTemp[i - l] < arrTemp[j - l]) {
                 arr[k] = arrTemp[i - l];
                 i++;
             } else {
                 arr[k] = arrTemp[j - l];
+                j++;
             }
         }
 
