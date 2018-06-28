@@ -25,7 +25,7 @@ public class SortTest {
 
     @Test
     public void sort() throws Exception {
-        int n = 1000000;
+        int n = 10000000;
         int[] arr = this.generateRandomArray(n, 0, 10);
         int[] arr1 = arr.clone();
         int[] arr2 = arr.clone();
