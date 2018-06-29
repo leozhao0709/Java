@@ -1,9 +1,8 @@
 package algorithms.graph;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-class SparseGraph {
+class SparseGraph extends Graph {
 
     private ArrayList<Edge>[] graph;
     private int nVertex;

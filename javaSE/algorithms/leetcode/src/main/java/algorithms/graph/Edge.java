@@ -1,6 +1,7 @@
 package algorithms.graph;
 
-class Edge {
+
+class Edge implements Comparable<Edge>{
 
     private int from;
     private int to;
@@ -27,8 +28,14 @@ class Edge {
     @Override
     public String toString() {
         return "Edge{" +
-                "to=" + to +
+                "from=" + from +
+                ", to=" + to +
                 ", weight=" + weight +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Edge o) {
+        return Double.compare(this.getWeight(), o.getWeight());
     }
 }
