@@ -79,4 +79,10 @@ public class GraphTest {
 
         System.out.println(Arrays.toString(this.undirectedDenseGraph.getMSTPath().toArray()));
     }
+
+    @Test
+    public void minimumPath() {
+        Path minimumPath = this.directedDenseGraph.getMinimumPath(0, 8);
+        System.out.println(minimumPath);
+    }
 }

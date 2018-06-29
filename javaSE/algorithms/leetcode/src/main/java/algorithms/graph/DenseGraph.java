@@ -13,6 +13,7 @@ class DenseGraph extends Graph {
     private int[] pathFrom; // path array
     private ArrayList<Edge> mstPath;
 
+
     public DenseGraph(int nVertex, boolean directed) {
         this.nVertex = nVertex;
         this.graph = new Edge[nVertex][nVertex];
@@ -186,5 +187,66 @@ class DenseGraph extends Graph {
         return this.mstPath;
     }
 
+    public Path getMinimumPath(int src, int des) {
+        boolean[] marked = new boolean[this.nVertex];
+        double[] minimum = new double[this.nVertex];
 
+        this.pathFrom = new int[this.nVertex];
+        for (int i = 0; i < this.pathFrom.length; i++) {
+            this.pathFrom[i] = -1;
+        }
+
+        List<Integer> pathArray = new ArrayList<>();
+
+        this.getMinimumPath(src, des, marked, minimum);
+
+        Stack<Integer> stack = new Stack<>();
+        stack.push(des);
+
+        int parent = this.pathFrom[des];
+        while (parent != -1) {
+            stack.push(parent);
+            parent = this.pathFrom[parent];
+        }
+
+        while (!stack.isEmpty()) {
+            pathArray.add(stack.pop());
+        }
+
+        double distance = minimum[des];
+        return new Path(src, des, distance, pathArray);
+    }
+
+    private void getMinimumPath(int src, int des, boolean[] marked, double[] minimum) {
+        if (src == des || src < 0) {
+            return;
+        }
+
+        marked[src] = true;
+        Edge[] edges = this.graph[src];
+
+        for (int i = 0; i < edges.length; i++) {
+            if (edges[i] != null && !marked[i]) {
+                if (minimum[i] == 0) {
+                    minimum[i] = minimum[src] + edges[i].getWeight();
+                    this.pathFrom[i] = src;
+                } else if (minimum[src] + edges[i].getWeight() < minimum[i]) {
+                    minimum[i] = minimum[src] + edges[i].getWeight();
+                    this.pathFrom[i] = src;
+                }
+            }
+        }
+        
+        int nextSrc = -1;
+        double min = Double.MAX_VALUE;
+
+        for (int i = 0; i < minimum.length; i++) {
+            if (!marked[i] && minimum[i] != 0 && minimum[i] < min) {
+                min = minimum[i];
+                nextSrc = i;
+            }
+        }
+
+        this.getMinimumPath(nextSrc, des, marked, minimum);
+    }
 }
