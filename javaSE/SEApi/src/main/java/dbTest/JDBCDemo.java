@@ -1,9 +1,6 @@
 package dbTest;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 class JDBCDemo {
 
@@ -16,11 +13,23 @@ class JDBCDemo {
         String password = System.getenv("DB_PASS");
         Connection connection = DriverManager.getConnection(url, username, password);
 
-        Statement statement = connection.createStatement();
-        int rows = statement.executeUpdate("insert into category(cid, cname) values('c007', '旅游')");
-        System.out.println(rows);
+        PreparedStatement pst = connection.prepareStatement("insert into category(cid, cname) values(?, ?)");
+        pst.setObject(1, "c008");
+        pst.setObject(2, "逛街");
 
-        statement.close();
+        pst.execute();
+
+        pst = connection.prepareStatement("select * from category where cname=?");
+        pst.setObject(1, "旅游");
+
+        ResultSet rs = pst.executeQuery();
+
+        while (rs.next()) {
+            System.out.println(rs.getString("id") + "\t" + rs.getString("cid") + "\t" + rs.getString("cname"));
+        }
+
+        rs.close();
+        pst.close();
         connection.close();
 
     }

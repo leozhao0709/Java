@@ -23,13 +23,14 @@ public class GraphTest {
         this.undirectedDenseGraph = new DenseGraph(nVertex, false);
         this.undirectedSparseGraph = new SparseGraph(nVertex, false);
 
-        String testG1Path = "./src/test/java/algorithms/graph/testG1.txt";
+        String testG1Path = GraphTest.class.getResource("testG1.txt").getPath();
+
         this.readGraph(testG1Path, this.undirectedDenseGraph);
         this.readGraph(testG1Path, this.undirectedSparseGraph);
 
         nVertex = 9;
         this.directedDenseGraph = new DenseGraph(nVertex, true);
-        String testG2Path = "./src/test/java/algorithms/graph/testG2.txt";
+        String testG2Path = GraphTest.class.getResource("testG2.txt").getPath();
         this.readGraph(testG2Path, this.directedDenseGraph);
     }
 
