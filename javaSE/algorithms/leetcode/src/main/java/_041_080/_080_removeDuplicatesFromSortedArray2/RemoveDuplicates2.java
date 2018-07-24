@@ -6,21 +6,23 @@ class RemoveDuplicates2 {
         if (nums.length == 0) {
             return 0;
         }
-        int count = 0;
+
+        int ref = nums[0];
+        int count = 1;
         int flag = 0;
-        int prev = nums[0];
         for (int i = 1; i < nums.length; i++) {
-            if (nums[i] == prev && (flag == 0 || flag == 1)) {
-                count++;
-                flag++;
-            } else if (nums[i] != prev) {
+            if (nums[i] != ref) {
+                nums[count++] = nums[i];
+                ref = nums[i];
                 flag = 0;
-                count++;
-                nums[count] = nums[i];
-                prev = nums[i];
+            } else if (flag == 0) {
+                nums[count++] = ref;
+                flag++;
+            } else {
+                flag++;
             }
         }
 
-        return count+1;
+        return count;
     }
 }
