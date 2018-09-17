@@ -6,11 +6,14 @@ class ConvertSortedArrayToBST {
         int val;
         TreeNode left;
         TreeNode right;
-        TreeNode(int x) { val = x; }
+
+        TreeNode(int x) {
+            val = x;
+        }
     }
 
     public TreeNode sortedArrayToBST(int[] nums) {
-        return this.sortedArrayToBST(nums, 0, nums.length-1);
+        return this.sortedArrayToBST(nums, 0, nums.length - 1);
     }
 
     private TreeNode sortedArrayToBST(int[] nums, int start, int end) {
@@ -22,7 +25,7 @@ class ConvertSortedArrayToBST {
         TreeNode root = new TreeNode(nums[mid]);
 
         root.left = this.sortedArrayToBST(nums, start, mid - 1);
-        root.right = this.sortedArrayToBST(nums, mid+1, end);
+        root.right = this.sortedArrayToBST(nums, mid + 1, end);
 
         return root;
     }
