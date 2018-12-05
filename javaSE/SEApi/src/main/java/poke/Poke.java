@@ -1,9 +1,6 @@
 package poke;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.TreeSet;
+import java.util.*;
 
 class Poke {
 
@@ -22,29 +19,11 @@ class Poke {
         poke.add("小王");
         poke.add("大王");
         Collections.shuffle(poke);
-//        System.out.println(poke);
 
-        TreeSet<String> player1 = new TreeSet<>((o1, o2) -> {
-            if (Arrays.asList(colors).indexOf(o1.substring(0, 1)) > Arrays.asList(colors).indexOf(o2.substring(0, 1))) {
-                return 1;
-            } else if (Arrays.asList(colors).indexOf(o1.substring(0, 1)) < Arrays.asList(colors).indexOf(o2.substring(0, 1))) {
-                return -1;
-            } else {
-                System.out.println(o1.substring(1));
-                System.out.println(Arrays.asList(nums));
-                System.out.println(Arrays.asList(nums).indexOf(o1.substring(1)));
-                if (Arrays.asList(nums).indexOf(o1.substring(1)) > Arrays.asList(nums).indexOf(o2.substring(1))) {
-                    return 1;
-                }
-                else if (Arrays.asList(nums).indexOf(o1.substring(1)) < Arrays.asList(nums).indexOf(o2.substring(1))) {
-                    return -1;
-                }
-                return 0;
-            }
-        });
-        TreeSet<String> player2 = new TreeSet<>();
-        TreeSet<String> player3 = new TreeSet<>();
-        TreeSet<String> dipai = new TreeSet<>();
+        TreeSet<String> player1 = new TreeSet<>(getStringComparator(nums, colors));
+        TreeSet<String> player2 = new TreeSet<>(getStringComparator(nums, colors));
+        TreeSet<String> player3 = new TreeSet<>(getStringComparator(nums, colors));
+        TreeSet<String> dipai = new TreeSet<>(getStringComparator(nums, colors));
 
         for (int i = 0; i < poke.size(); i++) {
             if (i >= poke.size() - 3) {
@@ -63,5 +42,33 @@ class Poke {
         System.out.println("player2: " + player2);
         System.out.println("player3: " + player3);
 
+    }
+
+    private static Comparator<String> getStringComparator(String[] nums, String[] colors) {
+        return (o1, o2) -> {
+            if (indexOf(colors, o1.substring(0,2)) > indexOf(colors, o2.substring(0, 2))) {
+                return 1;
+            } else if (indexOf(colors, o1.substring(0,2)) < indexOf(colors, o2.substring(0, 2))) {
+                return -1;
+            } else {
+                if (indexOf(nums, o1.substring(2)) > indexOf(nums, o2.substring(2))) {
+                    return 1;
+                }
+                else if (indexOf(nums, o1.substring(2)) < indexOf(nums, o2.substring(2))) {
+                    return -1;
+                }
+                return 0;
+            }
+        };
+    }
+
+    private static int indexOf(String[] array, String target) {
+        for (int i= 0; i < array.length; i++) {
+            if (array[i].equals(target)) {
+                return i;
+            }
+        }
+
+        return -1;
     }
 }
