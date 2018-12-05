@@ -23,7 +23,7 @@ Date d = new Date();
 System.out.println(d); // Mon Dec 03 10:53:53 CST 2018
 System.out.println(d.getTime()); // 1543807617669
 
-Date d1 = new Date(0L);
+Date d1 = new Date(0L); // time stamp
 System.out.println(d1); // Thu Jan 01 08:00:00 CST 1970
 
 // conver date to String
