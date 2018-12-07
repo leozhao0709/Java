@@ -7,7 +7,8 @@ import java.util.concurrent.Future;
 
 class ThreadPoolDemo {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        ExecutorService es = Executors.newFixedThreadPool(3);
+//        ExecutorService es = Executors.newFixedThreadPool(3);
+        ExecutorService es = Executors.newCachedThreadPool();
         Future<String> future = es.submit(() -> {
             for (int i = 0; i < 50; i++) {
                 System.out.println(Thread.currentThread().getName() + "...." + i);
@@ -20,5 +21,6 @@ class ThreadPoolDemo {
         }
 
         System.out.println(future.get());
+        es.shutdown();
     }
 }

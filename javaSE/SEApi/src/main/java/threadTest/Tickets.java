@@ -4,7 +4,7 @@ class Tickets {
 
     private int tickets = 10;
 
-    public void sellTickets() {
+    void sellTickets() {
         new Thread(this::run).start();
     }
 

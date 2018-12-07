@@ -1,5 +1,39 @@
 # Thread
 
+## 0. some property
+
+-   `currentThread.setPriority(priority)` you can set priority 1 to 10. The priority is used to make CPU give more time for the thread.
+-   `Thread.sleep(milliSecond);`
+-   `currentThread.setDaemon(true)` set up daemon thread. **Deamon thread is a thread which will over when other non-deamon threads are all over.** In java, gc will run in Deamon thread.
+-   `currentThread.yield()` 礼让other thread
+-   `otherThread.join()` can used in current thread, which means other thread can join to current thread and start to run otherThread until it's finish, then it will continue currentThread.
+
+```java
+Thread t0 = new Thread(() -> {
+    for (int i = 0; i < 100; i++) {
+        System.out.println(Thread.currentThread().getName() + "----" + i);
+    }
+});
+
+Thread t1 = new Thread(() -> {
+    for (int i = 0; i < 100; i++) {
+        if (i == 50) {
+            try {
+                t0.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println(Thread.currentThread().getName() + "----" + i);
+    }
+});
+
+t0.start();
+t1.start();
+```
+
+Above example will start do an exchange between t0 and t1. But when t1 reach to 50, t0 joined. So then t0 will continue finishing its task, after finishing, then the task left in t1 will continue to run.
+
 ## 1. Using Lambda (same with runnable interface)
 
 ```java
@@ -16,6 +50,8 @@ public static void main(String[] args) {
     }
 }
 ```
+
+Note: **remember to call `t.start()`!!**
 
 ## 2. Using extends Thread
 
@@ -38,7 +74,7 @@ class NameThread extends Thread {
 
 Using `Executors` and `ExecutorService` to create a thread pool. Then using `ExecutorService.submit(Runnable/Callable)` to start a new thread
 
-Note `Runnable` can't return and can't throw exceptions. That's why `Callable` is comming.
+**Note `Runnable` can't return and can't throw exceptions. That's why `Callable` is comming.**
 
 ```java
 public static void main(String[] args) throws ExecutionException, InterruptedException {
@@ -57,6 +93,15 @@ public static void main(String[] args) throws ExecutionException, InterruptedExc
     System.out.println(future.get()); // Future will block future thread
 }
 ```
+
+Note:
+
+-   You can define `Executors.newFixedThreadPool`, then you can create **several** `future` as it is a thread pool. one future occupied one thread.
+-   Please know, the `ExecutorService` is submit a `callable<T>` interface. In the example above, we are using java8 lambda expression.
+-   We can also use `future.isDone()` to get whether the future thread is done or not.
+-   With using `future.get()`, we can get the thread return value. But please note, when you call `future.get()`, **it will block other thread until the future thread finish and return.**
+-   You can also call `es.shutdown();` to shut down the thread pool. Make sure you want to call it. **You should always just call it when you want to exit JVM.**
+-   You can also use `Executors.newCachedThreadPool()`. If you create one new task, it will create a new thread. It will create 0 to `Integer.MAX_VALUE` pool threads, so be becareful when you want to use it.
 
 ## 4. synchronized
 
@@ -102,6 +147,154 @@ private synchronized void run() {
 }
 ```
 
-## 5. 线程间通信
+Note:
+
+-   Synchronized method will make all method synchronized which sometimes you don't need. You only need use synchroized block to synchronize the slow part of your code.
+
+## 5. deadLock
+
+```java
+Object obj1 = new Object();
+Object obj2 = new Object();
+Thread t0 = new Thread(() -> {
+    synchronized (obj1) {
+        System.out.println(Thread.currentThread().getName() + "-----obj1");
+
+        synchronized (obj2) {
+            System.out.println(Thread.currentThread().getName() + "-----obj2");
+        }
+    }
+});
+
+Thread t1 = new Thread(() -> {
+//            try {
+//                Thread.sleep(1000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+    synchronized (obj2) {
+        System.out.println(Thread.currentThread().getName() + "-----obj2");
+
+        synchronized (obj1) {
+            System.out.println(Thread.currentThread().getName() + "-----obj1");
+        }
+    }
+});
+
+t0.start();
+t1.start();
+```
+
+Note:
+
+-   t0 thread get the obj1 lock, then cpu change to t1 thread and get the obj2 lock. Then both obj1 and obj2 were locked.
+-   If there's a **dead lock** coming, then **we can use terminal to debug**. first, using `jps` to check all the java running program and you need to find your program process. Then `jstack -l processNumber` will tell you the dead lock info.
+
+## 6. old thread communication(not recommend)
 
 Using `wait`, `notify` and `notifyAll` to do the communication between different thread.
+
+## 7. new thread communication(recommend)
+
+Using `ReentrantLock` and `Condition`
+
+```java
+class ThreadCommunicationTest {
+
+    public static void main(String[] args) {
+        PrintTest printTest = new PrintTest(1);
+
+        Thread t1 = new Thread(() -> {
+            while (true) {
+                printTest.print1();
+            }
+        });
+
+        Thread t2 = new Thread(() -> {
+            while (true) {
+                printTest.print2();
+            }
+        });
+
+        Thread t3 = new Thread(() -> {
+            while (true) {
+                printTest.print3();
+            }
+        });
+
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+}
+
+class PrintTest {
+
+    private int flag;
+    private ReentrantLock lock = new ReentrantLock();
+    private Condition condition1 = lock.newCondition();
+    private Condition condition2 = lock.newCondition();
+    private Condition condition3 = lock.newCondition();
+
+
+    PrintTest(int flag) {
+        this.flag = flag;
+    }
+
+    void print1() {
+        lock.lock();
+        if (this.flag != 1) {
+            try {
+                condition1.await();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("this is print1...");
+        this.flag = 2;
+        condition2.signal();
+        lock.unlock();
+    }
+
+    void print2() {
+        lock.lock();
+        if (this.flag != 2) {
+            try {
+                condition2.await();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("this is print2...");
+        this.flag = 3;
+        condition3.signal();
+        lock.unlock();
+    }
+
+    void print3() {
+        lock.lock();
+        if (this.flag != 3) {
+            try {
+                condition3.await();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        System.out.println("this is print3...");
+        this.flag = 1;
+        condition1.signal();
+        lock.unlock();
+    }
+}
+```
+
+Note:
+
+-   You may need a `flag` variable.
+-   Using `lock.lock();` and `lock.unlock()` to do the synchronized code block.
+-   Using `signal` to do the thread communication.
+
+## 8. 5 Thread states
+
+![Thread states](./images/threadStates.png)
