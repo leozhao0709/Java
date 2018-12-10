@@ -1,4 +1,4 @@
-# DML
+# crud
 
 ## 1. insert, update and delete
 
@@ -76,10 +76,17 @@ select d.dname,e.ename from emp e,dept d where e.deptno = d.deptno; -- SQL92. th
 select d.dname,e.ename from emp e join dept d on e.deptno = d.deptno; -- SQL99 (recommend) this is a inner join
 
 select a.ename empname ,b.ename leadername from emp a join emp b on a.mgr = b.empno; -- 自连接
+
+select a.ename, b.ename as manager from emp as a left join emp as b on a.`MGR`=b.`EMPNO`; -- left join. will list all left table part, if there's no match in right table, then right part will show null.
+
+select a.ename as manager, b.ename from emp as a right join emp as b on a.`EMPNO`=b.`MGR`; -- right join. same with left join, but show all right part.
 ```
 
 Note:
 
 -   for `inner join`, we don't need to write `inner` keyword.
+-   `left join` will first list the inner join part, then **list all left left table part, then right part will show null.**
+-   `right join` is same with left join, but list all left right table part and show null for not matched records in left table part.
+
 
 
