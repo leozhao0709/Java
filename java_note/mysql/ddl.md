@@ -24,3 +24,4 @@ create table emp(
 -   `ALTER TABLE user CHARACTER SET gbk;` 修改表的字符集为gbk
 -   `ALTER TABLE user CHANGE name username varchar(20);` 列名name修改为username
 -   `DROP TABLE user ;` 删除表
+-   `SHOW ENGINES;` 显示存储引擎
