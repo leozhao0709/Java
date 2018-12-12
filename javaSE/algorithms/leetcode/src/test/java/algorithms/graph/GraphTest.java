@@ -23,7 +23,7 @@ public class GraphTest {
         this.undirectedDenseGraph = new DenseGraph(nVertex, false);
         this.undirectedSparseGraph = new SparseGraph(nVertex, false);
 
-        String testG1Path = GraphTest.class.getResource("testG1.txt").getPath();
+        String testG1Path = GraphTest.class.getResource("/testG1.txt").getPath();
 
         this.readGraph(testG1Path, this.undirectedDenseGraph);
         this.readGraph(testG1Path, this.undirectedSparseGraph);

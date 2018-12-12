@@ -11,21 +11,8 @@ class DBUtil {
     private static String userName;
     private static String password;
 
-//    static {
-//        ResourceBundle rb = ResourceBundle.getBundle("properties.area");
-//        url = rb.getString("dbUrl");
-//        String driverClass = rb.getString("driverClass");
-//        userName = System.getenv("DB_USER");
-//        password = System.getenv("DB_PASS");
-//        try {
-//            Class.forName(driverClass);
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-    public static Connection getConnection() throws SQLException {
-         ResourceBundle rb = ResourceBundle.getBundle("properties.area");
+    static {
+        ResourceBundle rb = ResourceBundle.getBundle("dbTest.db");
         url = rb.getString("dbUrl");
         String driverClass = rb.getString("driverClass");
         userName = System.getenv("DB_USER");
@@ -35,6 +22,9 @@ class DBUtil {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(url, userName, password);
     }
 }

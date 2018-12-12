@@ -1,10 +1,6 @@
 # File
 
 ## 0. File method
-```java
-String resourcePath = FileStreamTest.class.getResource("./test.txt").getPath();
-File file = new File(resourcePath);
-```
 -  `file.getName()`
 
 -  `file.createNewFile()`
@@ -28,7 +24,7 @@ File file = new File(resourcePath);
 ## 1. read file by Line (not recommend, please check BufferedReader)
 
 ```java
-String path = GraphTest.class.getResource("testG1.txt").getPath(); // class loader, `GraphTest` is current class
+String path = "testG1.txt"
 File file = new File(path);
 List<String> lines = Files.readAllLines(file.toPath());
 
@@ -41,7 +37,7 @@ for(String line : lines){
 ## 2. fileInputStream
 
 ```java
-String resourcePath = FileStreamTest.class.getResource("./test.txt").getPath();
+String resourcePath = "./test.txt";
 try (FileInputStream fis = new FileInputStream(resourcePath);) {
    byte[] bytes = new byte[3];
    int temp;
@@ -63,7 +59,7 @@ Note:
 ## 3. fileOutputStream
 
 ```java
-String resourcePath = FileStreamTest.class.getResource("./test.txt").getPath();
+String resourcePath = "./test.txt";
 try(FileOutputStream fos = new FileOutputStream(resourcePath, true);) {
    //如果文件不存在，则会自动创建
    //如果要想在文件中append写的话，第二个参数传true
@@ -92,8 +88,8 @@ Note:
 ## 4. BufferedStream
 
 ```java
-String inputResourcePath = FileStreamTest.class.getResource("./input.txt").getPath();
-String outputResourcePath = FileStreamTest.class.getResource("./output.txt").getPath();
+String inputResourcePath = "./input.txt";
+String outputResourcePath = "./output.txt";
 try (
    //使用缓冲流装饰一下
    BufferedInputStream bis = new BufferedInputStream(new FileInputStream(inputResourcePath));
@@ -142,8 +138,8 @@ class FileStreamTest {
 ## 6. BufferedReader/Writer
 
 ```java
-String inputResourcePath = FileStreamTest.class.getResource("./input.txt").getPath();
-String outputResourcePath = FileStreamTest.class.getResource("./output.txt").getPath();
+String inputResourcePath = "./input.txt";
+String outputResourcePath = "./output.txt";
 try (BufferedReader br = new BufferedReader(new FileReader(inputResourcePath));
    BufferedWriter bw = new BufferedWriter(new FileWriter(outputResourcePath));) {
    String s;
@@ -167,8 +163,8 @@ Note:
 These 2 are used when you want to deal with different encoding of the file.
 
 ```java
-String inputResourcePath = FileStreamTest.class.getResource("./input.txt").getPath();
-String outputResourcePath = FileStreamTest.class.getResource("./output.txt").getPath();
+String inputResourcePath = "./input.txt";
+String outputResourcePath = "./output.txt";
 // 使用FileInputStream读取文本内容，然后通过InputStreamReader和指定的编码将字符转换为字节
 try (BufferedReader br = new BufferedReader(
                new InputStreamReader(new FileInputStream(inputResourcePath), "utf-8"));
