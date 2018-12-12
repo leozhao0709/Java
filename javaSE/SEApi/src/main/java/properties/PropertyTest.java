@@ -3,6 +3,10 @@ package properties;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URL;
+import java.nio.file.FileSystem;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.ResourceBundle;
@@ -10,9 +14,9 @@ import java.util.ResourceBundle;
 class PropertyTest {
 
     public static void main(String[] args) {
-//        writeToProperties();
+        writeToProperties();
 //        readProperties();
-        readPropertiesFromResourceBundle();
+//        readPropertiesFromResourceBundle();
     }
 
     private static void readPropertiesFromResourceBundle() {
@@ -28,7 +32,9 @@ class PropertyTest {
         properties.setProperty("BJ", "Beijing");
         properties.setProperty("NJ", "Nanjing");
         try {
-            String path = PropertyTest.class.getResource("./area.properties").getPath();
+            URL url = PropertyTest.class.getResource("./area.properties");
+            String path = url.getPath();
+
             properties.store(new FileOutputStream(path), "Area Info");
         } catch (IOException e) {
             e.printStackTrace();
@@ -39,7 +45,7 @@ class PropertyTest {
         Properties properties = new Properties();
 
         try {
-            String path = PropertyTest.class.getResource("./area.properties").getPath();
+            String path = PropertyTest.class.getResource("area.properties").getPath();
             properties.load(new FileInputStream(path));
             System.out.println(properties.getProperty("BJ"));
             System.out.println(properties.getProperty("NJ"));
