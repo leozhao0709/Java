@@ -8,7 +8,7 @@ private static void writeToProperties() {
     properties.setProperty("BJ", "Beijing");
     properties.setProperty("NJ", "Nanjing");
     try {
-        String path = PropertyTest.class.getResource("./area.properties").getPath();
+        String path = "./area.properties";
         properties.store(new FileOutputStream(path), "Area Info");
     } catch (IOException e) {
         e.printStackTrace();
@@ -26,7 +26,7 @@ Note:
 private static void readProperties() {
     Properties properties = new Properties();
     try {
-        String path = PropertyTest.class.getResource("./area.properties").getPath();
+        String path = "./area.properties";
         properties.load(new FileInputStream(path));
         System.out.println(properties.getProperty("BJ"));
         System.out.println(properties.getProperty("NJ"));
@@ -50,6 +50,7 @@ private static void readPropertiesFromResourceBundle() {
 
 Note:
 
+-   We need a `resources` folder and put resources file in that folder.
 -   With read properties from resource bundle, we can do **international** for a property file. We can define different properties with different localized property file.
 -   We can define several international property file: ![international](./images/internaltionalPropertyFile.png)
 -   When you use `ResourceBundle.getBundle("package.fileNoExtension");`, there's no extension of the properties file, but you need contains the package name.
