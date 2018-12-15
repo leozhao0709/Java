@@ -19,6 +19,7 @@ private static void writeToProperties() {
 Note:
 
 -   Use `properties.store(new FileOutputStream(path), "Area Info");` to write the property to a file. The second parameter is a comment that should introduce your properties file.
+-   When writing, it can't be written to resource folder.
 
 ## 2. get properties from peroperties file (not recommend)
 
@@ -26,7 +27,7 @@ Note:
 private static void readProperties() {
     Properties properties = new Properties();
     try {
-        String path = "./area.properties";
+        String path = PropertyTest.class.getClassLoader().getResource("properties/area.properties").getPath();
         properties.load(new FileInputStream(path));
         System.out.println(properties.getProperty("BJ"));
         System.out.println(properties.getProperty("NJ"));

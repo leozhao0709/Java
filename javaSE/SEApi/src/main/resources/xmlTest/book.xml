@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 注释 -->
+<books>
+	<book id="1001">
+		<name>java编程入门</name>
+		<price>50</price>
+	</book>
+	<book>
+		<name>java高级编程</name>
+		<price>50&lt;30</price>
+		<![CDATA[
+			<abc>
+		]]>
+	</book>
+	<book id="1002">
+		<name>java之道</name>
+		<price>80</price>
+	</book>
+	<book>
+		<name>颈椎病康复指南</name>
+		<price>20</price>
+	</book>
+</books>

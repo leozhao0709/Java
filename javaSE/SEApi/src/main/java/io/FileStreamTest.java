@@ -7,7 +7,7 @@ import java.io.IOException;
 class FileStreamTest {
 
     public static void main(String[] args) {
-        String resourcePath = FileStreamTest.class.getResource("./test.txt").getPath();
+        String resourcePath = FileStreamTest.class.getResource("test.txt").getPath();
         try (FileInputStream fis = new FileInputStream(resourcePath);
             CloseTest ct = new CloseTest()) {
             byte[] bytes = new byte[3];

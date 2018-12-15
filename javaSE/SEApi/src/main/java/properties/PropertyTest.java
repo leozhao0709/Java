@@ -1,6 +1,5 @@
 package properties;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -31,7 +30,6 @@ class PropertyTest {
         properties.setProperty("NJ", "Nanjing");
         properties.setProperty("XA", "Xian");
         try {
-            System.out.println(PropertyTest.class.getResource("./area.properties").getPath());
             String path = PropertyTest.class.getResource("./area.properties").getPath();
             properties.store(new FileOutputStream(path), "Area Info");
         } catch (IOException e) {
@@ -43,7 +41,7 @@ class PropertyTest {
         Properties properties = new Properties();
 
         try {
-            String path = PropertyTest.class.getResource("").getPath() + "area_zh_cn.properties";
+            String path = PropertyTest.class.getClassLoader().getResource("properties/area.properties").getPath();
             properties.load(new FileInputStream(path));
             System.out.println(properties.getProperty("BJ"));
             System.out.println(properties.getProperty("NJ"));
