@@ -1,5 +1,15 @@
 # JDBC
 
+## 0. maven dependecy
+
+```xml
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>6.0.6</version>
+</dependency>
+```
+
 ## 1. connect
 
 ```java
