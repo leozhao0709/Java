@@ -16,3 +16,21 @@
 -   `getLocalAddr` 方法返回WEB服务器的IP地址。
 -   `getLocalName` 方法返回WEB服务器的主机名
 -   `getMethod` 得到客户机请求方式
+
+```java
+request.setCharacterEncoding("utf-8");
+        
+String userName = request.getParameter("username");
+String password = request.getParameter("password");
+
+String[] hobbies = request.getParameterValues("hobby");
+
+System.out.println("userName: " + userName);
+System.out.println("password: " + password);
+System.out.println("hobbies: " + Arrays.toString(hobbies));
+```
+
+Note:
+
+-   Use `request.setCharacterEncoding("utf-8");` to set post method encoding
+-   For get method encoding, please check [JavaEE encoding](http://www.monkey1024.com/javaweb/918)

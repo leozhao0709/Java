@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-<form action="httprequesttest" method="post">
+<form action="redirect" method="post">
     <div>
         <label for="username">UserName: </label>
         <input type="text" id="username" name="username">
@@ -17,19 +17,6 @@
     <div>
         <label for="password">password: </label>
         <input type="password" id="password" name="password">
-    </div>
-
-    <div>
-        <label>Hobby: </label>
-
-        <input type="checkbox" name="hobby" id="basketBall" value="basketBall">
-        <label for="basketBall">Basket Ball</label>
-
-        <input type="checkbox" name="hobby" id="footBall" value="footBall">
-        <label for="footBall">Foot Ball</label>
-
-        <input type="checkbox" name="hobby" id="volleyBall" value="volleyBall">
-        <label for="volleyBall">Volley Ball</label>
     </div>
 
     <button type="submit">Submit</button>
