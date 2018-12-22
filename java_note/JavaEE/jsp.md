@@ -24,3 +24,13 @@
 ## 2. JSP inner object
 
 ![jsp内置对象](./images/JSP内置对象的类型.png)
+
+-   `pageContext`: 页面上下文，通过该对象中的setAttribute和getAttribute方法设置访问范围只在当前页面中有效的数据，不过在当前页面范围中，数据都是可以直接使用的，所以该对象不常用
+-   `out`: 该类型继承了IO流中的Writer，所以out是一个输出流对象，使用方法上跟PrintWriter类似。
+-   `page`: 通过源码中可以看到，将this赋值给page，所以该对象就是servlet自己，在实际应用中不常使用
+-   `exception`: 该对象通常配合page指令使用
+-   `application`: 该对象和下面的对象的使用方法跟servlet中的一样
+-   `request`
+-   `response`
+-   `session`
+-   `config`
