@@ -43,6 +43,9 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"  isErrorPage="true"%>
 <%@ page import="java.util.*,java.sql.*" %>
 
+<!-- define error page -->
+<%@ page errorPage="/error.jsp" %> 
+
 系统出现问题，请联系管理员
 
 <%
@@ -84,3 +87,88 @@ index sum=<%= sum %>
 Note:
 
 -   The difference for `<%@ include file="/left.jsp" %>` and `<jsp:include page="/left.jsp"/>`: The first one will only generate 1 java file, but the second will generate 2 java file. So **if you can use the first one, please use it.**
+
+## 5. [EL expression](http://www.monkey1024.com/javaweb/952)
+
+EL，Expression Language，表达式语言，是一种在JSP页面中获取数据的简单方式，通过${变量名}的方式可以获取到值，需要注意的是EL只能从 pageConext、request、session、application 四大域属性空间中获取数据。
+
+```jsp
+<% 
+    pageContext.setAttribute("name", "page");
+    request.setAttribute("name", "request");
+    session.setAttribute("name", "session");
+    application.setAttribute("name", "application");
+%>
+<!-- 使用域属性空间相关的内置对象获取数据 -->
+${pageScope.name }
+${requestScope.name }
+${sessionScope.name }
+${applicationScope.name }
+
+
+<!-- object -->
+<%     
+    Student stu = new Student("张三", 22);
+    School s = new School("小猴子",stu);
+    request.setAttribute("s", s);
+%>
+<!-- 访问 school对象中的student对象中的属性 -->
+${requestScope.s.stu.name }
+
+
+<!-- list -->
+<%     
+    Student stu1 = new Student("张三", 22);
+    Student stu2 = new Student("李四", 23);
+    Student stu3 = new Student("王五", 24);
+    List<Student> list = new ArrayList<Student>();
+    list.add(stu1);
+    list.add(stu2);
+    list.add(stu3);
+    request.setAttribute("list", list);
+%>
+<!-- 输出李四 -->
+${list[1].name }
+<!-- 没有输出也不会报错 -->
+${list[50].name }
+
+
+<!-- map -->
+<%     
+    Map<String,String> map = new HashMap<String,String>();
+    map.put("name","monkey1024");
+    map.put("password","123456");
+    request.setAttribute("map", map);
+%>
+${map.name }
+<br>
+${map.password }
+
+
+<!-- empty -->
+<%     
+    request.setAttribute("name", "");
+    request.setAttribute("student", null);
+    request.setAttribute("list", new ArrayList());
+%>
+<!-- 下面输出结果均为true -->
+变量未定义：${empty no }<br>
+空字符串：${empty name }<br>
+对象是null：${empty student }<br>
+集合中没有元素：${empty list }<br>
+
+
+<!-- 内置对象pageContext -->
+<form action="${pageContext.request.contextPath }/login.do"></form>
+<!-- webxml initial param, you need to define context-param in web.xml -->
+${initParam.admin} 
+<!-- localhost:8080/07-04-jsp/index.jsp?hobby=basketball&hobby=football -->
+${paramValues.hobby[0]}
+${paramValues.hobby[1]}
+
+```
+
+Note:
+
+-   EL 无法输出 Set 集合中的元素。因为 Set 集合中的元素是无序的，即没有索引的概念，所以无法通过索引获取元素。
+
