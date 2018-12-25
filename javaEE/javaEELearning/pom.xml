@@ -11,6 +11,7 @@
         <module>servletTest</module>
         <module>listenerTest</module>
         <module>lisenterTest</module>
+        <module>统计在线用户</module>
     </modules>
     <packaging>pom</packaging>
 
