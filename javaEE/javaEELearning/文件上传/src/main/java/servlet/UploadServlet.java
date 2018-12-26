@@ -24,7 +24,6 @@ public class UploadServlet extends HttpServlet {
         response.setContentType("text/html;charset=utf-8");
 
         String uploadsPath = this.getServletContext().getRealPath("/uploads");
-        System.out.println(uploadsPath);
 
         Part part = request.getPart("photo");
         String fileName = part.getSubmittedFileName();
@@ -35,14 +34,14 @@ public class UploadServlet extends HttpServlet {
         int month = now.getMonthValue();
         int day = now .getDayOfMonth();
 
-        uploadsPath += File.separator + year + File.pathSeparator + month + File.pathSeparator + day;
+        uploadsPath = uploadsPath + File.separator + year + File.separator + month + File.separator + day;
         File parentDir = new File(uploadsPath);
 
         if (!parentDir.exists()) {
             parentDir.mkdirs();
         }
-
-        part.write(uploadsPath + "/" + fileName);
+        System.out.println(uploadsPath);
+        part.write(uploadsPath + File.separator + fileName);
     }
 
 }

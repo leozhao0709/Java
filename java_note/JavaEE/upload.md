@@ -66,14 +66,14 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
     int month = now.getMonthValue();
     int day = now .getDayOfMonth();
 
-    uploadsPath += File.separator + year + File.pathSeparator + month + File.pathSeparator + day;
+    uploadsPath = uploadsPath + File.separator + year + File.separator + month + File.separator + day;
     File parentDir = new File(uploadsPath);
 
     if (!parentDir.exists()) {
         parentDir.mkdirs();
     }
-
-    part.write(uploadsPath + "/" + fileName);
+    System.out.println(uploadsPath);
+    part.write(uploadsPath + File.separator + fileName);
 }
 ```
 
