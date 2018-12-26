@@ -9,9 +9,8 @@
   <version>1.0-SNAPSHOT</version>
     <modules>
         <module>servletTest</module>
-        <module>listenerTest</module>
-        <module>lisenterTest</module>
         <module>统计在线用户</module>
+        <module>文件上传</module>
     </modules>
     <packaging>pom</packaging>
 

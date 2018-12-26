@@ -9,11 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>lisenterTest</artifactId>
+    <artifactId>文件上传</artifactId>
     <packaging>war</packaging>
 
-    <name>lisenterTest Maven Webapp</name>
+    <name>文件上传 Maven Webapp</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
-
 </project>

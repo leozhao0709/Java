@@ -44,10 +44,6 @@ public class ServletListener implements ServletContextListener,
     }
 
 
-//    public void sessionCreated(HttpSessionEvent se) {
-//
-//    }
-
     public void sessionDestroyed(HttpSessionEvent se) {
         HttpSession session = se.getSession();
         String ip = (String) session.getAttribute("ip");
@@ -61,5 +57,4 @@ public class ServletListener implements ServletContextListener,
 
         session.getServletContext().setAttribute("ipCount", this.ipMap.size());
     }
-
 }
