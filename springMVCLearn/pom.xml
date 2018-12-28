@@ -10,6 +10,7 @@
     <modules>
         <module>firstSpringMVC</module>
         <module>form</module>
+        <module>controllerReturnValue</module>
     </modules>
     <packaging>pom</packaging>
 
