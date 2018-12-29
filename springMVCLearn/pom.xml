@@ -11,6 +11,9 @@
         <module>firstSpringMVC</module>
         <module>form</module>
         <module>controllerReturnValue</module>
+        <module>excpetionResolver</module>
+        <module>validator</module>
+        <module>uploadTest</module>
     </modules>
     <packaging>pom</packaging>
 

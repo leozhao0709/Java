@@ -38,8 +38,9 @@
     
     <!-- 静态资源 -->
     <mvc:annotation-driven/>
-    <mvc:resources mapping="/images/**" location="/images" />
-    <mvc:resources mapping="/css/**" location="/css" />
+    <mvc:resources mapping="/images/**" location="/images"/>
+    <mvc:resources mapping="/css/**" location="/css"/>
+    <mvc:resources mapping="/js/**" location="/js"/>
 
      <!-- 视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -92,6 +93,17 @@ Note:
         <param-value>classpath:springMVC.xml</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
+    <!--使用servlet3.0实现文件上传-->
+    <multipart-config>
+        <!--临时文件路径-->
+        <location>/tmp</location>
+        <!--单个上传文件的最大值，单位是byte-->
+        <max-file-size>1048576</max-file-size>
+        <!--总上传文件的最大值-->
+        <max-request-size>52428800</max-request-size>
+        <!--内存缓冲区的大小,当超过该值时，会写入到临时文件中，单位是byte-->
+        <file-size-threshold>1024</file-size-threshold>
+    </multipart-config>
 </servlet>
 <servlet-mapping>
     <servlet-name>springMVC</servlet-name>
