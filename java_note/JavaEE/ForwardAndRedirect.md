@@ -8,22 +8,45 @@
 
 ```java
 // servlet1
-protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    request.setCharacterEncoding("UTF-8");
+@WebServlet(name = "ForwardServlet1", urlPatterns = {"/forward"})
+public class ForwardServlet1 extends HttpServlet {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    request.setAttribute("someNewAttr", "a new Attribute");
+        System.out.println("forward1...");
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-    request.getRequestDispatcher("forwardServletUrl").forward(request, response);
+        request.setCharacterEncoding("UTF-8");
+        request.setAttribute("someNewAttr", "a new Attribute");
+
+        request.getRequestDispatcher("forward2").forward(request, response); // redirect to another servlet url
+        // request.getRequestDispatcher("/jsp/some.jsp").forward(request, response); // redirect to another jsp
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
+    }
+
 }
 
 // servlet2
-protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    String userName = request.getParameter("username");
-    String password = request.getParameter("password");
+@WebServlet(name = "ForwardServlet2", urlPatterns = {"/forward2"})
+public class ForwardServlet2 extends HttpServlet {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String userName = request.getParameter("username");
+        String password = request.getParameter("password");
 
-    String someNewAttr = (String) request.getAttribute("someNewAttr");
+        String someNewAttr = (String) request.getAttribute("someNewAttr");
 
-    System.out.println("ForwardServlet2: " + userName + "....." + password + "....." + someNewAttr);
+        System.out.println("ForwardServlet2: " + userName + "....." + password + "....." + someNewAttr);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
+    }
 }
 ```
 
@@ -49,13 +72,13 @@ Note:
 
 ```java
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    response.sendRedirect("redirect2");
+    response.sendRedirect("redirectServletUrl"); // redirect to another servlet
 }
 ```
 
 Note:
 
--   Use `response.sendRedirect("redirect2");` to redirect a url.
+-   Use `response.sendRedirect("redirectServletUrl");` to redirect to another servlet.
 
 
 ## 3. difference for redirect and foward

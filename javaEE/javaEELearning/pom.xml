@@ -11,6 +11,7 @@
         <module>servletTest</module>
         <module>统计在线用户</module>
         <module>文件上传</module>
+        <module>filterTest</module>
     </modules>
     <packaging>pom</packaging>
 

@@ -35,9 +35,25 @@
 
     <!-- 注册组件扫描器 -->
     <context:component-scan base-package="controllers"/>
+
+    <!--解决返回json数据乱码问题-->
+    <bean id="stringHttpMessageConverter"
+          class="org.springframework.http.converter.StringHttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>text/plain;charset=UTF-8</value>
+                <value>application/json;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <ref bean="stringHttpMessageConverter" />
+        </mvc:message-converters>
+    </mvc:annotation-driven>
     
     <!-- 静态资源 -->
-    <mvc:annotation-driven/>
+    <!-- <mvc:annotation-driven/> -->
     <mvc:resources mapping="/images/**" location="/images"/>
     <mvc:resources mapping="/css/**" location="/css"/>
     <mvc:resources mapping="/js/**" location="/js"/>
@@ -107,7 +123,7 @@ Note:
 </servlet>
 <servlet-mapping>
     <servlet-name>springMVC</servlet-name>
-    <url-pattern>*.do</url-pattern>
+    <url-pattern>/</url-pattern>
 </servlet-mapping>
 ```
 

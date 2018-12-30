@@ -2,7 +2,7 @@
 
 ## 1. forward
 
-The default `ModelAndView` return view is actually a review forward.
+The default `ModelAndView` return view is actually a view forward.
 
 If you want to forward to another controller, then use something like this `mv.setViewName("forward:other.do");`
 
@@ -47,6 +47,23 @@ public ModelAndView redirectMAV(String name){
     ${param.name}
 </body>
 </html>
+```
+
+```java
+ @RequestMapping("/redirectMAV.do")
+public ModelAndView redirectMAV(School school,String name)throws Exception{
+
+    ModelAndView mv = new ModelAndView();
+
+    mv.addObject("name", name);
+    mv.addObject("schoolName", school.getSchoolName());
+    mv.addObject("address", school.getAddress());
+
+    System.out.println(school.getAddress());
+    //使用重定向，此时springmvc.xml配置文件中的视图解析器将会失效
+    mv.setViewName("redirect:other.do"); // redirect to another controller
+    return mv;
+}
 ```
 
 Note:
