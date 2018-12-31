@@ -15,6 +15,7 @@
         <module>validator</module>
         <module>uploadTest</module>
         <module>interceptors</module>
+        <module>restful</module>
     </modules>
     <packaging>pom</packaging>
 

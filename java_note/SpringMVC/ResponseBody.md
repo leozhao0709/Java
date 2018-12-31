@@ -1,6 +1,6 @@
 # ResponseBody annotation
 
-## 0. additional maven dependecy
+## 0. additional maven dependecy for **String** responseBody
 
 ```xml
 <dependency>
