@@ -141,6 +141,9 @@ class StudentDaoImpl implements StudentDao {
 
     <!--注册配置文件-->
     <properties resource="db.properties"/>
+    <typeAliases>
+        <package name="bean"/>
+    </typeAliases>
 
     <environments default="development">
         <environment id="development">
