@@ -1,25 +1,36 @@
-package dao.impl;
+package dao;
 
 import bean.Student;
-import dao.StudentDao;
+import org.apache.ibatis.session.SqlSession;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import utils.MyBatisUtil;
 
 import java.util.List;
 
+import static org.junit.Assert.*;
 
-public class StudentDaoImplTest {
+public class StudentDaoTest {
 
+    private SqlSession sqlSession;
     private StudentDao studentDao;
 
     @Before
     public void setUp() throws Exception {
-        this.studentDao = new StudentDaoImpl();
+        sqlSession = MyBatisUtil.getSqlSession();
+        studentDao = sqlSession.getMapper(StudentDao.class);
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        if (sqlSession != null) {
+            sqlSession.close();
+        }
     }
 
     @Test
     public void insertStudent() {
-
         Student student = new Student("刘德华", 52, 98.50);
         this.studentDao.insertStudent(student);
         System.out.println(student);
@@ -27,7 +38,7 @@ public class StudentDaoImplTest {
 
     @Test
     public void deleteStudent() {
-        this.studentDao.deleteStudent(10);
+        this.studentDao.deleteStudent(11);
     }
 
     @Test
