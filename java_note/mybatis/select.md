@@ -27,7 +27,7 @@ Student selectStudentById(int id);
 List<Student> selectStudentByNameLike(String name);
 ```
 
-```java (impl)
+```java (impl, optional if you are using mapper proxy)
 @Override
 public List<Student> selectAllStudents() {
     List<Student> allStudents;

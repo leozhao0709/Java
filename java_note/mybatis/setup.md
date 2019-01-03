@@ -40,7 +40,8 @@ Add this xml under `<build>` tag.
 ## 2. add log4j.properties under resources folder
 
 ```propertis
-log4j.logger.java=debug,console
+#log4j.logger.java=debug,console
+log4j.rootLogger=debug,console
 
 #控制台附加器
 log4j.appender.console = org.apache.log4j.ConsoleAppender
@@ -54,6 +55,8 @@ log4j.appender.console.layout.ConversionPattern= [%-5p][%d{yyyy-MM-dd HH:mm:ss}]
 ```properties
 jdbc.driver=com.mysql.cj.jdbc.Driver
 jdbc.url=jdbc:mysql://localhost:3306/mybatis?useSSL=false&serverTimezone=America/Los_Angeles
+jdbc.user=username
+jdbc.pass=password
 ```
 
 ## 5. create java file
@@ -100,7 +103,7 @@ public interface StudentDao {
 }
 ```
 
-```java
+```java (optional if you are using mapper dynamic proxy)
 class StudentDaoImpl implements StudentDao {
 
     @Override
@@ -118,15 +121,12 @@ class StudentDaoImpl implements StudentDao {
 
 ## 4. create mapper file in DAO folder
 
-```xml (studentMapper.xml)
+```xml (StudentMapper.xml)
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="">
-    <insert id="insertStudent">
-        INSERT INTO student(name,age,score) VALUES (#{name},#{age},#{score})
-    </insert>
+<mapper namespace="dao.StudentDao">
 </mapper>
 ```
 
@@ -151,8 +151,8 @@ class StudentDaoImpl implements StudentDao {
             <dataSource type="POOLED">
                 <property name="driver" value="${jdbc.driver}"/>
                 <property name="url" value="${jdbc.url}"/>
-                <property name="username" value="${env: DB_USER}"/>
-                <property name="password" value="${env: DB_PASS}"/>
+                <property name="username" value="${jdbc.user}"/>
+                <property name="password" value="${jdbc.pass}"/>
             </dataSource>
         </environment>
     </environments>
@@ -161,4 +161,27 @@ class StudentDaoImpl implements StudentDao {
         <mapper resource="dao/StudentMapper.xml"/>
     </mappers>
 </configuration>
+```
+
+## 6. usage
+
+Here's a test example.
+
+```java
+public class StudentDaoTest {
+
+    private SqlSession sqlSession;
+    private StudentDao studentDao;
+
+    @Before
+    public void setUp() throws Exception {
+        sqlSession = MyBatisUtil.getSqlSession();
+        studentDao = sqlSession.getMapper(StudentDao.class);
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        sqlSession.close();
+    }
+}
 ```

@@ -18,7 +18,7 @@ Note:
 void deleteStudent(int id);
 ```
 
-```java (impl)
+```java (impl, optional if you are using mapper proxy)
 @Override
 public void deleteStudent(int id) {
     try (SqlSession sqlSession = MyBatisUtil.getSqlSession()) {

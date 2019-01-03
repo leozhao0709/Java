@@ -25,7 +25,7 @@ public interface StudentDao {
 }
 ```
 
-```java (DaoImpl)
+```java (DaoImpl, optional if you are using mapper proxy)
 @Override
 public void insertStudent(Student student) {
     //SqlSession继承了AutoCloseable接口，所以可以自动关闭
