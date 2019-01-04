@@ -10,6 +10,7 @@
     <modules>
         <module>firstMybatis</module>
         <module>dynamicSql</module>
+        <module>oneToMany</module>
     </modules>
     <packaging>pom</packaging>
 
