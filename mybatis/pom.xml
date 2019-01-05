@@ -11,6 +11,7 @@
         <module>firstMybatis</module>
         <module>dynamicSql</module>
         <module>oneToMany</module>
+        <module>manyToOne</module>
     </modules>
     <packaging>pom</packaging>
 
