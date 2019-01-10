@@ -10,6 +10,7 @@
     <modules>
         <module>firstSpring</module>
         <module>DI</module>
+        <module>aop</module>
     </modules>
     <packaging>pom</packaging>
 
