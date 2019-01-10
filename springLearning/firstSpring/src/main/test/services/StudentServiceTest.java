@@ -1,9 +1,10 @@
-package com.lzhao.di.services;
+package services;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import services.StudentService;
 
 public class StudentServiceTest {
 

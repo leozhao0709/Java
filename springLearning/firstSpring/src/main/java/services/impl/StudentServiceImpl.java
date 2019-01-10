@@ -1,7 +1,7 @@
 package services.impl;
 
 import org.springframework.stereotype.Service;
-import com.lzhao.di.services.StudentService;
+import services.StudentService;
 
 @Service("studentService")
 class StudentServiceImpl implements StudentService {

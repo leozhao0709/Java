@@ -1,4 +1,4 @@
-package com.lzhao.di.services;
+package services;
 
 import org.junit.Before;
 import org.junit.Test;

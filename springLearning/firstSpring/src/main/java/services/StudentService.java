@@ -1,4 +1,4 @@
-package com.lzhao.di.services;
+package services;
 
 public interface StudentService {
     void study();
