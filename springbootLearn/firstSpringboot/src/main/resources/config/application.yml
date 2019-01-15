@@ -1,9 +1,8 @@
-server:
-  port: 8085
-
+spring:
+  profiles:
+    active: dev
 
 person:
-  name: prod
   age: 27
   boss: false
   birth-day: 1991/1/1
