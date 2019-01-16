@@ -1,6 +1,6 @@
 package com.lzhao.firstspringboot.config.interceptors;
 
-import com.lzhao.firstspringboot.interceptors.MyInterceptors;
+import com.lzhao.firstspringboot.components.interceptors.MyInterceptors;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;

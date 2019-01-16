@@ -1,6 +1,8 @@
 spring:
   profiles:
     active: dev
+  messages:
+    basename: i18n.login, i18n.others
 
 person:
   age: 27

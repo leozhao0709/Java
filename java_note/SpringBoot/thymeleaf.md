@@ -1,5 +1,13 @@
 # Thymeleaf
 
+## 0. disable cache in dev env
+
+```yml
+spring:
+  thymeleaf:
+    cache: false
+```
+
 ## 1. setup
 
 ```xml

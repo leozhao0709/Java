@@ -1,6 +1,7 @@
 server:
   port: 8081
 
+
 person:
   name: dev
   age: 27
@@ -23,3 +24,7 @@ logging:
   file:
     max-size: 20MB
     max-history: 7
+
+spring:
+  thymeleaf:
+    cache: false
