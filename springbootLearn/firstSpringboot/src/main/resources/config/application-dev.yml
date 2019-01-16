@@ -11,3 +11,15 @@ person:
   dog:
     name: dog
     age: 12
+
+logging.file: logs/app.log
+logging:
+  pattern:
+      console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
+      file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
+  level:
+    com:
+      lzhao: debug
+  file:
+    max-size: 20MB
+    max-history: 7

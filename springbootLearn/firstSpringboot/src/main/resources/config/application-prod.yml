@@ -4,3 +4,13 @@ server:
 
 person:
   name: prod
+
+logging:
+  pattern:
+      console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
+      file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
+  level:
+    com:
+      lzhao: info
+#  file: ./logging/com.lzhao.log
+#  path: /var/log/com.lzhao.log

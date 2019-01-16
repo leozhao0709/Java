@@ -1,0 +1,44 @@
+2019-01-15 13:18:29.983 [main] INFO  c.l.f.FirstspringbootApplicationTests - Starting FirstspringbootApplicationTests on lzhao-mbp with PID 85501 (started by lzhao in /Users/lzhao/Documents/my_git/java/springbootLearn/firstSpringboot)
+2019-01-15 13:18:29.984 [main] DEBUG c.l.f.FirstspringbootApplicationTests - Running with Spring Boot v2.1.2.RELEASE, Spring v5.1.4.RELEASE
+2019-01-15 13:18:29.984 [main] INFO  c.l.f.FirstspringbootApplicationTests - The following profiles are active: dev
+2019-01-15 13:18:31.288 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-01-15 13:18:31.526 [main] INFO  c.l.f.FirstspringbootApplicationTests - Started FirstspringbootApplicationTests in 2.083 seconds (JVM running for 2.9)
+2019-01-15 13:18:31.838 [main] DEBUG c.l.f.FirstspringbootApplicationTests - debug...
+2019-01-15 13:18:31.838 [main] INFO  c.l.f.FirstspringbootApplicationTests - info...
+2019-01-15 13:18:31.840 [main] WARN  c.l.f.FirstspringbootApplicationTests - warn...
+2019-01-15 13:18:31.840 [main] ERROR c.l.f.FirstspringbootApplicationTests - error...
+2019-01-15 13:18:31.846 [Thread-1] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2019-01-15 14:16:31.145 [main] INFO  c.lzhao.firstspringboot.FirstspringbootApplication - Starting FirstspringbootApplication on lzhao-mbp with PID 90937 (/Users/lzhao/Documents/my_git/java/springbootLearn/firstSpringboot/target/classes started by lzhao in /Users/lzhao/Documents/my_git/java/springbootLearn/firstSpringboot)
+2019-01-15 14:16:31.147 [main] DEBUG c.lzhao.firstspringboot.FirstspringbootApplication - Running with Spring Boot v2.1.2.RELEASE, Spring v5.1.4.RELEASE
+2019-01-15 14:16:31.147 [main] INFO  c.lzhao.firstspringboot.FirstspringbootApplication - The following profiles are active: dev
+2019-01-15 14:16:32.015 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8081 (http)
+2019-01-15 14:16:32.041 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-01-15 14:16:32.041 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.14]
+2019-01-15 14:16:32.049 [main] INFO  org.apache.catalina.core.AprLifecycleListener - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/lzhao/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2019-01-15 14:16:32.129 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-01-15 14:16:32.129 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 941 ms
+2019-01-15 14:16:32.313 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-01-15 14:16:32.383 [main] INFO  o.s.b.a.web.servlet.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2019-01-15 14:16:32.453 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8081 (http) with context path ''
+2019-01-15 14:16:32.457 [main] INFO  c.lzhao.firstspringboot.FirstspringbootApplication - Started FirstspringbootApplication in 1.693 seconds (JVM running for 2.419)
+2019-01-15 14:16:39.871 [http-nio-8081-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-01-15 14:16:39.872 [http-nio-8081-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2019-01-15 14:16:39.879 [http-nio-8081-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 7 ms
+2019-01-15 16:26:24.171 [Thread-2] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2019-01-15 16:26:43.467 [main] INFO  c.lzhao.firstspringboot.FirstspringbootApplication - Starting FirstspringbootApplication on lzhao-mbp with PID 1775 (/Users/lzhao/Documents/my_git/java/springbootLearn/firstSpringboot/target/classes started by lzhao in /Users/lzhao/Documents/my_git/java/springbootLearn/firstSpringboot)
+2019-01-15 16:26:43.468 [main] DEBUG c.lzhao.firstspringboot.FirstspringbootApplication - Running with Spring Boot v2.1.2.RELEASE, Spring v5.1.4.RELEASE
+2019-01-15 16:26:43.469 [main] INFO  c.lzhao.firstspringboot.FirstspringbootApplication - The following profiles are active: dev
+2019-01-15 16:26:44.328 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8081 (http)
+2019-01-15 16:26:44.352 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-01-15 16:26:44.352 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.14]
+2019-01-15 16:26:44.358 [main] INFO  org.apache.catalina.core.AprLifecycleListener - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/lzhao/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2019-01-15 16:26:44.440 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-01-15 16:26:44.441 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 941 ms
+2019-01-15 16:26:44.624 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-01-15 16:26:44.705 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2019-01-15 16:26:44.726 [main] INFO  o.s.b.a.web.servlet.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2019-01-15 16:26:44.806 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8081 (http) with context path ''
+2019-01-15 16:26:44.810 [main] INFO  c.lzhao.firstspringboot.FirstspringbootApplication - Started FirstspringbootApplication in 1.694 seconds (JVM running for 2.268)
+2019-01-15 16:26:56.656 [http-nio-8081-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-01-15 16:26:56.663 [http-nio-8081-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2019-01-15 16:26:56.670 [http-nio-8081-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 7 ms
