@@ -26,7 +26,7 @@ SpringBoot会从这四个位置全部加载主配置文件；互补配置；
 
 **if you put the an `application.properties/application.yml` file at the same folder with your jar package, then you even do not need to specify the --spring.config.location, just run `java -jar spring-boot-02-config-02-0.0.1-SNAPSHOT.jar `**
 
-## 1. using `@ConfigurationProperties(prefix="something")`
+## 1. using `@ConfigurationProperties(prefix="something")` and `@Component`
 
 We can use this `@ConfigurationProperties` annotation and bind it with a class. Then we can read the properties from yml/properties file. Plase check the `setup.md` for this case.
 

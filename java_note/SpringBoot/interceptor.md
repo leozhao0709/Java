@@ -44,3 +44,4 @@ Note:
 
 -   Using `@Configuration` to tell spring boot, this is an extra configuration file that need to be load. And we add our interceptors here.
 -   In here, we are implements `WebMvcConfigurer`. If you are not using spring 5.0 or higher, then please **extends** `WebMvcConfigurerAdapter`.
+-   You need to **restart server** to load the config.
