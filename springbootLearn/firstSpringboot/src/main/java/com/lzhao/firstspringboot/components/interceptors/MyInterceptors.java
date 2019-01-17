@@ -13,6 +13,13 @@ public class MyInterceptors implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 //        System.out.println("拦截器中的preHandle方法");
+        Object username = request.getSession().getAttribute("username");
+
+        if (username == null) {
+            request.setAttribute("msg", "please login first!");
+            request.getRequestDispatcher("/").forward(request, response);
+            return false;
+        }
         return true;
     }
 
