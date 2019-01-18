@@ -1,8 +1,6 @@
 package com.lzhao.firstspringboot.dao;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import com.lzhao.firstspringboot.entities.Department;
 import com.lzhao.firstspringboot.entities.Employee;
@@ -17,7 +15,7 @@ public class EmployeeDao {
 	
 	@Autowired
 	private DepartmentDao departmentDao;
-	
+
 	static{
 		employees = new HashMap<Integer, Employee>();
 

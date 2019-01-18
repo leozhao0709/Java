@@ -3,6 +3,8 @@ spring:
     active: dev
   messages:
     basename: i18n.login, i18n.others
+  mvc:
+    date-format: MM-dd-yyyy
 
 person:
   age: 27

@@ -59,4 +59,60 @@ spring:
     -   No-Operation: _
 
 -   For binding variable, there's another way: [[${variable}]] (转义) or [(${variable})] (不转义). **These are useful when you binding checkbox input or just plain html variable**.
+
+
+## 3. insert/replace/include fragment
+
+create fragment:
+
+```html (sidebar.html)
+<nav class="col-md-2 d-none d-md-block bg-light sidebar" th:fragment="sidebar">
+    <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active"
+                   th:class="${activeUri} == 'dashboard' ? 'nav-link active': 'nav-link'"
+                   th:href="@{/dashboard}"
+                   href="http://getbootstrap.com/docs/4.0/examples/dashboard/#">
+                    Dashboard <span class="sr-only">(current)</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+```
+
+insert/replace/inculde fragment:
+
+```html
+<div th:replace="common/sidebar::sidebar(activeUri='emps')"></div>
+```
     
+Note:
+
+-   We can pass `variable` to a fragment when calling the fragment.
+
+## 4. th-each
+
+```html
+<tbody>
+    <tr th:each="emp:${emps}">
+        <td th:text="${emp.id}"></td>
+        <td th:text="${emp.lastName}"></td>
+        <td th:text="${emp.email}"></td>
+        <td th:text="${emp.gender} == 0 ? '女': '男'"></td>
+        <td th:text="${emp.department.departmentName}"></td>
+        <td th:text="${#dates.format(emp.birth, 'yyyy-MM-dd')}"></td>
+        <td>
+            <button class="btn btn-sm btn-primary">edit</button>
+            <button class="btn btn-sm btn-danger">delete</button>
+        </td>
+    </tr>
+</tbody>
+```
+
+## 5. date format
+
+```html
+<td th:text="${#dates.format(emp.birth, 'yyyy-MM-dd')}"></td>
+```
