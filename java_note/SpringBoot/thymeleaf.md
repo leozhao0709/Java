@@ -116,3 +116,14 @@ Note:
 ```html
 <td th:text="${#dates.format(emp.birth, 'yyyy-MM-dd')}"></td>
 ```
+
+## 6. url with variable
+
+```html
+<form th:method="post" th:action="@{/emp/edit/} + ${employee.id}">
+</form>
+```
+
+Note:
+
+-   Use `+` if you have 2 different type in thymeleaf.

@@ -49,38 +49,38 @@
     <div th:replace="common/sidebar::sidebar(activeUri='emps')"></div>
 
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-        <h2>
-            <a class="btn btn-sm btn-success" th:href="@{/emp/add}">add</a>
-        </h2>
-        <div class="table-responsive">
-            <table class="table table-striped table-sm">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>lastName</th>
-                    <th>email</th>
-                    <th>gender</th>
-                    <th>department</th>
-                    <th>birth</th>
-                    <th>operation</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="emp:${emps}">
-                    <td th:text="${emp.id}"></td>
-                    <td th:text="${emp.lastName}"></td>
-                    <td th:text="${emp.email}"></td>
-                    <td th:text="${emp.gender} == 0 ? '女': '男'"></td>
-                    <td th:text="${emp.department.departmentName}"></td>
-                    <td th:text="${#dates.format(emp.birth, 'yyyy-MM-dd')}"></td>
-                    <td>
-                        <a class="btn btn-sm btn-primary" th:href="@{/emp/edit/} + ${emp.id}">edit</a>
-                        <a class="btn btn-sm btn-danger" th:href="@{/emp/delete/} + ${emp.id}">delete</a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+        <form th:method="post" th:action="@{/emp/edit/} + ${employee.id}">
+            <div class="form-group">
+                <label>LastName</label>
+                <input name="lastName" type="text" class="form-control" placeholder="zhangsan" th:value="${employee.lastName}">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input name="email" type="email" class="form-control" placeholder="zhangsan@atguigu.com" th:value="${employee.email}">
+            </div>
+            <div class="form-group">
+                <label>Gender</label><br/>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" value="1" th:checked="${employee.gender == 1}">
+                    <label class="form-check-label">男</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" value="0" th:checked="${employee.gender==0}">
+                    <label class="form-check-label">女</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>department</label>
+                <select name="department.id" class="form-control">
+                    <option th:value="${department.id}" th:each="department: ${departments}" th:text="${department.departmentName}" th:selected="${employee.department.id == department.id}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Birth</label>
+                <input name="birth" type="text" class="form-control" placeholder="12-21-1991" th:value="${#dates.format(employee.birth, 'MM-dd-yyyy')}">
+            </div>
+            <button type="submit" class="btn btn-primary">update</button>
+        </form>
     </main>
 </div>
 </div>

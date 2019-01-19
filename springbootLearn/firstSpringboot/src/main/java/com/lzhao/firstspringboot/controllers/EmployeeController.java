@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Collection;
@@ -38,6 +39,29 @@ class EmployeeController {
     @PostMapping("/emp/add")
     public String addEmployee(Employee employee) {
         employeeDao.save(employee);
+        return "redirect:/emps";
+    }
+
+    @GetMapping("/emp/edit/{id}")
+    public String toEditEmployeePage(@PathVariable("id") int employeeId, Model model) {
+        Employee employee = employeeDao.get(employeeId);
+        model.addAttribute("employee", employee);
+
+        Collection<Department> departments = departmentDao.getDepartments();
+        model.addAttribute("departments", departments);
+        return "emp/edit";
+    }
+
+    @PostMapping("/emp/edit/{id}")
+    public String editEmployee(Employee employee) {
+        System.out.println(employee);
+        employeeDao.save(employee);
+        return "redirect:/emps";
+    }
+
+    @GetMapping("/emp/delete/{id}")
+    public String deleteEmployee(@PathVariable("id") int employeeId) {
+        employeeDao.delete(employeeId);
         return "redirect:/emps";
     }
 }
