@@ -5,6 +5,11 @@ spring:
     basename: i18n.login, i18n.others
   mvc:
     date-format: MM-dd-yyyy
+  datasource:
+    username: ${DB_USER}
+    password: ${DB_PASS}
+    url: jdbc:mysql://localhost:3306/jdbcLearn
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
 person:
   age: 27
