@@ -23,7 +23,7 @@ spring:
   datasource:
     username: ${DB_USER}
     password: ${DB_PASS}
-    url: localhost:3306/jdbcLearn
+    url: jdbc:mysql://localhost:3306/jdbcLearn?useSSL=false&serverTimezone=America/Los_Angeles
     driver-class-name: com.mysql.cj.jdbc.Driver
 ```
 
