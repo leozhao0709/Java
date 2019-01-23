@@ -9,7 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.ValidatorFactory;
 import java.util.List;
+import java.util.Set;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -40,7 +45,12 @@ public class StudentMapperTest {
 
     @Test
     public void insertStudent() {
-        Student s = new Student("lzhao", 27, 99.5);
+        Student s = new Student("lzhao", 17, 99.5);
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Set<ConstraintViolation<Student>> violations = factory.getValidator().validate(s);
+        for (ConstraintViolation<Student> violation : violations) {
+            throw new RuntimeException(violation.getMessage());
+        }
         System.out.println(s);
         studentMapper.insertStudent(s);
         System.out.println(s);

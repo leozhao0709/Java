@@ -1,10 +1,19 @@
 package com.lzhao.springbootmybatis.bean;
 
+import org.hibernate.validator.constraints.Length;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
+
 public class Student {
 
     private int id;
+    @Length(min = 2, max = 4, message = "name is between 1 to 3")
     private String name;
+    @Min(value = 18, message = "min value is 18")
+    @Max(value = 30, message = "max value is 30")
     private int age;
+    @Min(value = 60, message = "must have a score")
     private Double score;
 
     public Student(String name, int age, Double score) {

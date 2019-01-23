@@ -58,7 +58,7 @@ public class User {
             FieldError ageError = bindingResult.getFieldError("age");
             FieldError phoneError = bindingResult.getFieldError("phone");
 
-             if (nameError != null) {
+            if (nameError != null) {
                 mv.addObject("nameError", nameError.getDefaultMessage());
             }
             if (ageError != null) {
