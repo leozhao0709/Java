@@ -33,7 +33,7 @@ public class StudentMapperTest {
 
     @Test
     public void getStudentById() {
-        Student student = studentMapper.getStudentById(2);
+        Student student = studentMapper.getStudentById(12);
         System.out.println(student);
     }
 

@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    username: ${DB_USER}
+    password: ${DB_PASS}
+    url: jdbc:mysql://localhost:3306/springCacheTest?useSSL=false&serverTimezone=America/Los_Angeles
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+#logging.file: logs/app.log
+logging:
+  pattern:
+      console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
+#      file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
+  level:
+    com:
+      lzhao: debug
+#  file:
+#    max-size: 20MB
+#    max-history: 7

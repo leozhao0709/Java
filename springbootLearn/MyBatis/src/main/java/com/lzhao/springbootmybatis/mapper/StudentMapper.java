@@ -2,11 +2,11 @@ package com.lzhao.springbootmybatis.mapper;
 
 import com.lzhao.springbootmybatis.bean.Student;
 import org.apache.ibatis.annotations.*;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Component
+@Repository
 @Mapper
 public interface StudentMapper {
 

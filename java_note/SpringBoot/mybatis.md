@@ -25,9 +25,15 @@ spring:
     password: ${DB_PASS}
     url: jdbc:mysql://localhost:3306/mybatis?useSSL=false&serverTimezone=America/Los_Angeles
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
 ```
 
 ## 3. create mapper and java bean
+
+**Your java bean must have an empty constructor.**
 
 ```java
 public class Student {
@@ -41,6 +47,9 @@ public class Student {
     @Min(value = 60, message = "must have a score")
     private Double score;
 
+    public Student() {
+    }
+
     public Student(String name, int age, Double score) {
         this.name = name;
         this.age = age;
@@ -52,7 +61,7 @@ public class Student {
 ```
 
 ```java
-@Component
+@Repository
 @Mapper
 public interface StudentMapper {
 
