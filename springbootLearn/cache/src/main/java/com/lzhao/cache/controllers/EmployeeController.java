@@ -18,9 +18,18 @@ class EmployeeController {
 
     @PostMapping("/emp/update/{id}")
     public Employee updateEmployee(@PathVariable("id") int id, @RequestBody Employee employee) {
-        System.out.println(employee);
         employee.setId(id);
-        System.out.println(employee);
         return employeeService.updateEmployee(employee);
+    }
+
+    @GetMapping("/emp/delete/{id}")
+    public String deleteEmployee(@PathVariable("id") int id) {
+        employeeService.deleteEmp(id);
+        return "success";
+    }
+
+    @GetMapping("/emp/lastname/{lastname}")
+    public Employee getEmployee(@PathVariable("lastname") String lastName) {
+        return employeeService.getEmployeeByLastName(lastName);
     }
 }
