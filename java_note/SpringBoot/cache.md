@@ -149,7 +149,7 @@ You can define some shared value here. Then you don't need to piont the same thi
 @Configuration
 class MyCacheConfig {
 
-    @Bean
+    @Bean("myKeyGenerator")
     public KeyGenerator keyGenerator() {
         return (target, method, params) -> method.getName() + "[" + Arrays.asList(params).toString() + "]";
     }
