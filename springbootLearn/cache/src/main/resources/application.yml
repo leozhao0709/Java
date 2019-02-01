@@ -4,6 +4,9 @@ spring:
     password: ${DB_PASS}
     url: jdbc:mysql://localhost:3306/springCacheTest?useSSL=false&serverTimezone=America/Los_Angeles
     driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    host: localhost
+
 
 mybatis:
   configuration:
