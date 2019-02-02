@@ -9,44 +9,13 @@
 </dependency>
 ```
 
-## 1. config in your yml/properties file
+## 1. config in your yml/properties file and add configure java file
 
 ```yml
 spring:
   redis:
     host: localhost
 ```
-
-## 2. StringRedisTemplate
-
-`StringRedisTemplate` is only used for **string value**.
-
-```java
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class RedisTest {
-
-    @Autowired
-    private StringRedisTemplate stringRedisTemplate;
-
-    @Test
-    public void stringRedisTemplateTest() {
-        stringRedisTemplate.opsForValue().append("msg", "hello");
-        String msg = stringRedisTemplate.opsForValue().get("msg");
-        System.out.println(msg);
-
-        stringRedisTemplate.opsForList().leftPush("mylist", "1");
-        stringRedisTemplate.opsForList().leftPush("mylist", "2");
-        stringRedisTemplate.opsForList().leftPush("mylist", "3");
-    }
-}
-```
-
-## 3. RedisTemplate
-
-`RedisTemplate` is used for **object**. But please make sure your object implements `Serializable` if you want to use the default jdk object Serializable
-
-**If you want to use `json` to store your object, then just add this config and you don't need to implements `Serializable`:**
 
 ```java
 @Configuration
@@ -77,6 +46,44 @@ class MyRedisConfig {
     }
 }
 ```
+
+Note:
+
+-   If you want to use redis as cache. Then you need add the config file. Then check the `simpleCache.md`. Config the same way as introduced in that mark down file. Springboot will automatically use redis cache as long as you import the dependency.
+
+-   This config java file is used to store json in your redis cache.
+
+
+## 2. StringRedisTemplate
+
+`StringRedisTemplate` is only used for **string value**.
+
+```java
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class RedisTest {
+
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
+
+    @Test
+    public void stringRedisTemplateTest() {
+        stringRedisTemplate.opsForValue().append("msg", "hello");
+        String msg = stringRedisTemplate.opsForValue().get("msg");
+        System.out.println(msg);
+
+        stringRedisTemplate.opsForList().leftPush("mylist", "1");
+        stringRedisTemplate.opsForList().leftPush("mylist", "2");
+        stringRedisTemplate.opsForList().leftPush("mylist", "3");
+    }
+}
+```
+
+## 3. RedisTemplate
+
+`RedisTemplate` is used for **object**. But please make sure your object implements `Serializable` if you want to use the default jdk object Serializable
+
+**If you want to use `json` to store your object, then just add above config and you don't need to implements `Serializable`:**
 
 
 ```java
