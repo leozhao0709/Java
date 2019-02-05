@@ -43,7 +43,7 @@ Note:
 
 -   It's `org.springframework.amqp.support.converter.Jackson2JsonMessageConverter`;
 
-## 3. `RabbitTemplate` usage
+## 3. `RabbitTemplate` and `AmqpAdmin` usage
 
 **Please make sure you create your rabbitmq exchange and queue. Then you need to bind them with routing key**
 
@@ -54,7 +54,20 @@ public class RabbitmqTests {
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
+    @Autowired
+    private AmqpAdmin amqpAdmin;
 
+    @Test
+    public void createExchangeAndQueueAndBinding() {
+        // create exchange
+        amqpAdmin.declareExchange(new DirectExchange("test.exchange"));
+
+        // create queue
+        amqpAdmin.declareQueue(new Queue("test.queue"));
+
+        // binding queue and exchange
+        amqpAdmin.declareBinding(new Binding("test.queue", Binding.DestinationType.QUEUE, "test.exchange", "test.routingKey", null));
+    }
 
     @Test
     public void sendMessageTest() {
@@ -66,6 +79,12 @@ public class RabbitmqTests {
     }
 
     @Test
+    public void sendObjectTest() {
+        Book book = new Book("西游记", "吴承恩");
+        rabbitTemplate.convertAndSend("exchange.direct", "lzhao.news", book);
+    }
+
+    @Test
     public void receiveMessageTest() {
         Object newsMessage = rabbitTemplate.receiveAndConvert("lzhao.news");
         System.out.println(newsMessage.getClass()); // class java.util.HashMap
@@ -73,3 +92,48 @@ public class RabbitmqTests {
     }
 }
 ```
+
+Note:
+
+-   For a fanout exchange, you don't need to give the `routingKey` as fanout will broadcast its message.
+-   All object(not matter jdk or your self object) can be send as message body.
+-   **Your object should have a default empty constructor.**
+-   Use `AmqpAdmin` to create exchange, queue and binding.
+
+
+## 4. rabbitmq in springboot
+
+You need to enable rabbitmq with `@EnableRabbit` first.
+
+```java
+@EnableRabbit
+@SpringBootApplication
+public class DemoApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(DemoApplication.class, args);
+    }
+}
+```
+
+Then you can use `@RabbitListener` in your application:
+
+```java
+@Service
+class BookService {
+
+    @RabbitListener(queues = "lzhao.news")
+    public void receiveBook(Book book) {
+        System.out.println("receive message" + book);
+    }
+
+    @RabbitListener(queues = "lzhao.news")
+    public void receiveMessage(Message message) {
+        System.out.println(message.getBody());
+        System.out.println(message.getMessageProperties());
+    }
+}
+```
+
+Note:
+
+-   When queue receive any message, `@RabbitListener` will receive the message/object directly.
