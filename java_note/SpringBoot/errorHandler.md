@@ -25,7 +25,7 @@ Note:
 
 ## 2. return an error html page
 
--   If we want to return an error page in springboot, we just need to create an **`error` folder**, then **put it under template folder**. Then we need to create some like `error/404.html`, `error/4xx.html` or `error/5xx.html` page. Then when any error occurs, it will find the page according to the error status code. 
+-   If we want to return an error page in springboot, we just need to create an **`template/error` folder**. Then we need to create some like `error/404.html`, `error/4xx.html` or `error/5xx.html` page. Then when any error occurs, it will find the page according to the error status code. 
 
 -   In error page, we can use some variable
     -   `${timestamp}`
