@@ -72,3 +72,7 @@ public class TaskApplicationTests {
     }
 }
 ```
+
+Note:
+
+-   `MimeMessageHelper.setText()` has the second parameter which can define it's a html or not. default is false.

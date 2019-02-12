@@ -28,8 +28,8 @@ class MySecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutSuccessUrl("/")
                 ;
-        // 1. /login to login page
-        // 2. redirect to /login?error means login failed
+
+        http.rememberMe();
 
     }
 
