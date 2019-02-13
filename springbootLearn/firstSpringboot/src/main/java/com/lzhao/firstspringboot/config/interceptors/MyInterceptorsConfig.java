@@ -13,9 +13,9 @@ class MyInterceptorsConfig implements WebMvcConfigurer {
     @Resource(name = "MyInterceptors")
     private MyInterceptors myInterceptors;
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(myInterceptors)
-                .excludePathPatterns("/", "/assets/**", "/user/login");
-    }
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        registry.addInterceptor(myInterceptors)
+//                .excludePathPatterns("/", "/assets/**", "/user/login");
+//    }
 }
