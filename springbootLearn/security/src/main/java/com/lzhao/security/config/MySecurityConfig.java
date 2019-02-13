@@ -22,6 +22,9 @@ class MySecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/level3/**").hasRole("VIP3")
                 ;
         http.formLogin()
+                .usernameParameter("user")
+                .passwordParameter("pwd")
+                .loginPage("/userlogin")
                 .loginProcessingUrl("/login")
                 .failureUrl("/login?error")
                 .and()
@@ -29,7 +32,7 @@ class MySecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/")
                 ;
 
-        http.rememberMe();
+        http.rememberMe().rememberMeParameter("rememberMe");
 
     }
 

@@ -33,22 +33,24 @@ class MySecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 //        super.configure(http);
-        http.authorizeRequests()
+         http.authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/level1/**").hasRole("VIP1")
                 .antMatchers("/level2/**").hasRole("VIP2")
                 .antMatchers("/level3/**").hasRole("VIP3")
                 ;
         http.formLogin()
+                .usernameParameter("user")
+                .passwordParameter("pwd")
+                .loginPage("/userlogin")
                 .loginProcessingUrl("/login")
                 .failureUrl("/login?error")
                 .and()
                 .logout()
                 .logoutSuccessUrl("/")
                 ;
-        // 1. /login to login page
-        // 2. redirect to /login?error means login failed
 
+        http.rememberMe().rememberMeParameter("rememberMe");
     }
 
     @Bean
@@ -72,6 +74,7 @@ Note:
 
 -   In here, you may want to comment the `super` as it defines some its own requirement.
 -   If you don't define login url, it will use `/login`. If you don't define login fail url, it will use `/login?error` page. If you don't define logout page, it will use `/logout` page.
+-   You can customize your login page with `.loginPage("/userlogin")`. If you don't define `loginProcessingUrl("/login")`, then it will use your `/userlogin` to do the post login process. You should also define `usernameParameter("user")`, `passwordParameter("pwd")` and `rememberMeParameter("rememberMe")` to give your html input field a name.
 
 
 
