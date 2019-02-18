@@ -33,7 +33,7 @@ We can use this `@ConfigurationProperties` annotation and bind it with a class. 
 
 ## 2. using `@Value`
 
-If we just want to use one property once in some class, then we can simply use `@value(${propertyName})` to get the properties defined in `application.properties` or `application.yml`.
+If we just want to use one property once in some class, then we can simply use `@Value("${propertyName}")` to get the properties defined in `application.properties` or `application.yml`.
 
 
 ## 3. trick for `@PropertySource` (not recommend)
