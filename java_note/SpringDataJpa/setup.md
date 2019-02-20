@@ -27,9 +27,13 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 ```
 
 Note:
 
 -   You need to create db by yourself.
 -   for `ddl-auto`, there are different value: `update`, `create`, `create-drop` etc. We are always using `update`. `create` will drop old table if you rerun your app. `create-drop` will delete table before your app exit.
+-   **Default hibernate mysql engine is not InnoDB.** So you have to add the config.
