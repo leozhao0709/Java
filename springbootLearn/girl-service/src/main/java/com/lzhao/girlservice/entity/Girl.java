@@ -29,8 +29,13 @@ public class Girl {
     @Column(name = "insertDate")
     private LocalDate addDate;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private int password;
+
     @Transient
+    @JsonIgnore
     private String info;
+
 
 
     public Girl() {
@@ -89,5 +94,13 @@ public class Girl {
 
     public String getInfo() {
         return info;
+    }
+
+    public int getPassword() {
+        return password;
+    }
+
+    public void setPassword(int password) {
+        this.password = password;
     }
 }

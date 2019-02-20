@@ -1,12 +1,15 @@
 package com.lzhao.springbootmybatis.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Length;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
 
 public class Student {
 
+    @JsonIgnore
     private int id;
     @Length(min = 2, max = 4, message = "name is between 1 to 3")
     private String name;

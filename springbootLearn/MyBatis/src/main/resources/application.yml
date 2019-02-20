@@ -4,3 +4,11 @@ spring:
     password: ${DB_PASS}
     url: jdbc:mysql://localhost:3306/mybatis?useSSL=false&serverTimezone=America/Los_Angeles
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+logging:
+  pattern:
+      console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
+#      file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
+  level:
+    com:
+      lzhao: debug
