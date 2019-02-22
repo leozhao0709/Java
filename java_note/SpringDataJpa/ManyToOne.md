@@ -1,4 +1,4 @@
-# Many To One
+# Many To One (Don't use OneToMany)
 
 ## 1. create entity
 
@@ -33,7 +33,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String orderName;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CUSTOMER_ID")
     private Customer customer;
 
@@ -46,3 +46,5 @@ public class Order {
 Note:
 
 -   Must have an empty constructor.
+-   `@ManyToOne(fetch = FetchType.LAZY)` can do the lazy fetch
+-   Just use this `ManyToOne`. Don't use `OneToMany` as OneToMany will use more sql.
