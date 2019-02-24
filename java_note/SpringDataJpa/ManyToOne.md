@@ -1,4 +1,4 @@
-# Many To One (Don't use OneToMany)
+# Many To One
 
 ## 1. create entity
 
@@ -18,6 +18,9 @@ public class Customer {
 
     private LocalDateTime createTime;
     private LocalDate birth;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Order> orders;
 
     public Customer() {
     }
@@ -47,4 +50,4 @@ Note:
 
 -   Must have an empty constructor.
 -   `@ManyToOne(fetch = FetchType.LAZY)` can do the lazy fetch
--   Just use this `ManyToOne`. Don't use `OneToMany` as OneToMany will use more sql.
+-   Using the many side to manage relation which means use `JoinColumn`. For the one side, use `mappedBy`

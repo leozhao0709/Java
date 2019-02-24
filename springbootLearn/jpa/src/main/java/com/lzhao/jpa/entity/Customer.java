@@ -3,6 +3,7 @@ package com.lzhao.jpa.entity;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "JPA_CUSTOMERS")
@@ -19,6 +20,9 @@ public class Customer {
 
     private LocalDateTime createTime;
     private LocalDate birth;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Order> orders;
 
     public Customer() {
     }
@@ -40,7 +44,16 @@ public class Customer {
                 ", age=" + age +
                 ", createTime=" + createTime +
                 ", birth=" + birth +
+                ", orders=" + orders +
                 '}';
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     public Integer getId() {

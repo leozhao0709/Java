@@ -14,6 +14,14 @@ public class Order {
     @JoinColumn(name = "CUSTOMER_ID")
     private Customer customer;
 
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", orderName='" + orderName + '\'' +
+                ", CUSTOMER_ID=" + customer.getId() +
+                '}';
+    }
 
     public Order() {
     }
