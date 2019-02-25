@@ -11,10 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -27,13 +24,15 @@ public class CustomerAndOrderTest {
 
     @Test
     public void oneToManyInsert() {
-        Customer customer = new Customer("bb", "bb@163.com", 18, LocalDateTime.now(), LocalDate.now());
+        Customer customer = new Customer("cc", "cc@163.com", 18, LocalDateTime.now(), LocalDate.now());
 
-        Order order1 = new Order("O-BB-1", customer);
-        Order order2 = new Order("O-BB-2", customer);
+        Order order1 = new Order("O-CC-1", customer);
+        Order order2 = new Order("O-CC-2", customer);
 
-        List<Order> orderList = Arrays.asList(order1, order2);
-        customer.setOrders(orderList);
+        Set<Order> orderSet = new HashSet<>();
+        orderSet.add(order1);
+        orderSet.add(order2);
+        customer.setOrders(orderSet);
 
         customerRepository.save(customer);
         orderRepository.save(order1);
@@ -43,11 +42,15 @@ public class CustomerAndOrderTest {
     @Test
     @Transactional
     public void oneToManySelect() {
-        Optional<Order> order1 = orderRepository.findById(5);
-        order1.ifPresent(order -> {
-            System.out.println(order);
-            Customer customer = order.getCustomer();
-            System.out.println(customer);
-        });
+//        Optional<Order> order1 = orderRepository.findById(5);
+//        order1.ifPresent(order -> {
+//            System.out.println(order);
+//            Customer customer = order.getCustomer();
+//            System.out.println(customer);
+//        });
+
+        Order order1 = orderRepository.getOne(5);
+        System.out.println(order1);
+        System.out.println(order1.getCustomer());
     }
 }

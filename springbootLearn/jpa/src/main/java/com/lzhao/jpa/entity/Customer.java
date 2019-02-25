@@ -1,9 +1,12 @@
 package com.lzhao.jpa.entity;
 
+import org.springframework.data.annotation.ReadOnlyProperty;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "JPA_CUSTOMERS")
@@ -22,7 +25,7 @@ public class Customer {
     private LocalDate birth;
 
     @OneToMany(mappedBy = "customer")
-    private List<Order> orders;
+    private Set<Order> orders;
 
     public Customer() {
     }
@@ -48,11 +51,11 @@ public class Customer {
                 '}';
     }
 
-    public List<Order> getOrders() {
+    public Set<Order> getOrders() {
         return orders;
     }
 
-    public void setOrders(List<Order> orders) {
+    public void setOrders(Set<Order> orders) {
         this.orders = orders;
     }
 
