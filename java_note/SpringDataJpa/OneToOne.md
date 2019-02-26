@@ -62,5 +62,6 @@ Note:
 
 -   Must have an empty constructor.
 -   `@ManyToOne(fetch = FetchType.LAZY)` can do the lazy fetch
--   Using the many side to manage relation which means use `JoinColumn`. For the one side, use `mappedBy`.
+-   Using the many side to manage relation which means use `JoinColumn`. For the one side, use `MappedBy`. `MappedBy` the property name
 -   **When you see the sqlSession endup error**, then use `@Transactional` to your method.
+-   The order for saving matters.

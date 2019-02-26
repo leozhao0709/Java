@@ -86,7 +86,7 @@ public class CustomerAndOrderTest {
 Note:
 
 -   Must have an empty constructor.
--   `@ManyToOne(fetch = FetchType.LAZY)` can do the lazy fetch
--   Using the many side to manage relation which means use `JoinColumn`. For the one side, use `mappedBy`.
+-   `@ManyToOne(fetch = FetchType.LAZY)` can do the lazy fetch.
+-   Using the many side to manage relation which means use `JoinColumn`. For the one side, use `mappedBy`. `MappedBy` the property name.
 -   Note bio-direction may cause `circular dependency`. So when you refer an object, make sure no `circular dependency`.
 -   **When you see the sqlSession endup error**, then use `@Transactional` to your method.
