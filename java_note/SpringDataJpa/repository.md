@@ -40,7 +40,6 @@ public interface PersonRepository extends JpaRepository<Person, Integer> {
 Note:
 
 - Simple query should start with `getBy`, `findBy` or `readBy`.
-
 - keyword table
 
   | Keyword      | Sample                                 | JPQL snippet                                                 |
