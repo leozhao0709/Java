@@ -9,7 +9,7 @@
 </dependency>
 ```
 
-## 1. config in your yml/properties file and add configure java file
+## 1. config in your yml/properties file and add configure java file for spring boot cache
 
 ```yml
 spring:
@@ -54,7 +54,7 @@ Note:
 -   This config java file is used to store json in your redis cache.
 
 
-## 2. StringRedisTemplate
+## 2. StringRedisTemplate for general usage
 
 `StringRedisTemplate` is only used for **string value**.
 
@@ -79,7 +79,7 @@ public class RedisTest {
 }
 ```
 
-## 3. RedisTemplate
+## 3. RedisTemplate for general usage
 
 `RedisTemplate` is used for **object**. But please make sure your object implements `Serializable` if you want to use the default jdk object Serializable
 
